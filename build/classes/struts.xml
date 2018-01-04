@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 指定Struts 2配置文件的DTD信息 -->
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 配置了系列常量 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true"/>	
+
+	<package name="lee" extends="struts-default">
+			<!-- 让用户直接访问该应用时列出所有视图页面 -->
+		<action name="*">
+			<result>/WEB-INF/content/{1}.jsp</result>
+		</action>	
+		<action name="userregister" class="org.crazyit.booksys.action.RegisterAction">
+			<result name="success">/WEB-INF/content/login.jsp</result>
+			<result name="repeat">/WEB-INF/content/tip-register-repeat.jsp</result>
+			<result name="diffpassword">/WEB-INF/content/tip-register-diffpassword.jsp</result>
+		</action>
+		
+		<action name="userlogin" class="org.crazyit.booksys.action.LoginAction">
+			<result name="adminsuccess" type="redirect">adminIndex.action</result>
+			<result name="usersuccess" type="redirect">userIndex.action</result>
+			<result name="failure">/WEB-INF/content/tip-login-failure.jsp</result>
+		</action>
+		
+		<action name="adminIndex" class="org.crazyit.booksys.action.AdminIndexAction">
+			<result>/WEB-INF/content/adminIndex.jsp</result>
+		</action>
+		
+		<action name="userIndex" class="org.crazyit.booksys.action.UserIndexAction">
+			<result>/WEB-INF/content/userIndex.jsp</result>
+		</action>
+		
+		<action name="adminRecord" class="org.crazyit.booksys.action.AdminRecordAction">
+			<result>/WEB-INF/content/adminRecord.jsp</result>
+		</action>
+		
+		<action name="userRecord" class="org.crazyit.booksys.action.UserRecordAction">
+			<result>/WEB-INF/content/userRecord.jsp</result>
+		</action>
+		
+		<action name="addbook" class="org.crazyit.booksys.action.AddBookAction">
+			<result name="success" type="redirect">adminIndex.action</result>
+			<result name="failure">/WEB-INF/content/tip-addbook-failure.jsp</result>
+		</action>
+		
+		<action name="deletebook" class="org.crazyit.booksys.action.DeleteBookAction">
+			<result name="success" type="redirect">adminIndex.action</result>
+		</action>	
+		
+		<action name="borrowbook" class="org.crazyit.booksys.action.BorrowBookAction">
+			<result name="success" type="redirect">userIndex.action</result>
+		</action>
+		
+		<action name="returnbook" class="org.crazyit.booksys.action.ReturnBookAction">
+			<result name="success" type="redirect">userRecord.action</result>
+		</action>
+		
+		<action name="deletebook" class="org.crazyit.booksys.action.DeleteBookAction">
+			<result name="success" type="redirect">adminIndex.action</result>
+		</action>
+
+
+		
+	</package>
+</struts>
